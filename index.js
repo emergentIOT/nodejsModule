@@ -21,7 +21,7 @@ async function getDirFiles(folderName) {
    
     for (const item of dirs) {
         if(item.isDirectory()) {
-           // listOfImages = listOfImages.concat(await traverseDirFiles(path.join(folderName, item.name)));
+           //listOfImages = listOfImages.concat(await traverseDirFiles(path.join(folderName, item.name)));
            listOfImages = listOfImages.concat(item.name);
         } else {
             if (path.extname(item.name) === ".jpg") {
@@ -32,6 +32,8 @@ async function getDirFiles(folderName) {
 }
 return listOfImages;
 }
+
+
 
 /**
  * 

@@ -15,20 +15,26 @@ app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 
 app.get("/", function(req, res) {
     let finalUrl = [];
+    let freshImagesArray = [];
     //Get query params
     const queryObject = url.parse(req.url,true).query;
     //Get formatted URL
     const getUrl =  getListOfImages.formatQueryParam(queryObject);
     //Get list of images in requested dir
-    getListOfImages.getDirFiles(path.join(__dirname, getUrl)).then(images => {
-    //     // res.json({
-    //     //     success: true,
-    //     //     message: 'Successful !',
-    //     //     data: images,
-    //     // })
-        images.forEach(function(image) {
+    const requestedFile = getListOfImages.getRequestedImage(queryObject);
+    
+    getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
+        
+        images.imageList.forEach(function(image) {
+           // freshImagesArray.push(getUrl + "/" + image);
             finalUrl.push(getUrl + "/" + image);
-        })
-        res.render('devices', {listOfImages: finalUrl});
-    });
+        });
+       
+        //Return data for ejs to render.
+        res.render('devices', {
+            listOfImages: finalUrl, 
+            totalNumberOfImages: images.totalNumberOfImages,
+            imageAtIndex: images.requestedImageIndex
+        });
+    }).catch(error => console.log(`Error: ${error}`));
 })

@@ -40,11 +40,19 @@ listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length
     };
 }
 
-function listImagesFromDefindedIndex(startValue, endValue, images) {
+function listImagesFromDefindedIndex(l_startIndex, totFiles, images) {
     //selected index = 200
     //render till end
-    console.log("images", startValue, endValue, images[2]);
-     for (i=150; i<= 200  ;i++) {
+    const slideRange = 20;
+
+    let startRange = Math.max( (l_startIndex - slideRange), 0);
+    let endRange = Math.min( (l_startIndex + slideRange), totFiles);
+    			// if (startRange < slideRange){
+    			// 	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
+    			// }
+    			// //l_subFiles = Arrays.copyOfRange(l_Files, startRange, endRange);
+    console.log("images", startRange, endRange);
+     for (i=startRange; i<= endRange  ;i++) {
         console.log("images", images[i]);
      }
 }

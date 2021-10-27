@@ -18,6 +18,7 @@ const path = require("path");
 async function getDirFiles(folderName, requestedFileName) {
     //Array to get list of images in requested directory.
     let listOfImages = [];
+    const slideRange = 5;
     //Read directory. 
     const dirs = await fs.readdir(folderName, { withFileTypes: true });
     console.log(`Total number of images: ${dirs.length}`);
@@ -32,9 +33,30 @@ async function getDirFiles(folderName, requestedFileName) {
         }
     }
 }
-listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length, listOfImages);
-    return {
-        imageList: listOfImages, 
+//Calculate position of requested image.
+const l_startIndex = listOfImages.indexOf(requestedFileName);
+
+//Trim image count to defined range.
+const totFiles = dirs.length;
+if(totFiles == 0) {
+    console.log(`No images found in given path`);
+}
+
+let startRange = Math.max( (l_startIndex - slideRange), 0);
+let endRange = Math.min( (l_startIndex + slideRange), totFiles);
+if (startRange < slideRange){
+    endRange = Math.min((slideRange-startRange)+endRange, totFiles);
+}
+let l_subFiles = images.slice(startRange, endRange);
+
+
+//Recalculate start index for file sub set.
+const l_startIndex = l_subFiles.indexOf(requestedFileName);
+console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
+//listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length, listOfImages);
+
+return {
+        imageList: listOfImages.sort(), 
         totalNumberOfImages:dirs.length,
         requestedImageIndex:  listOfImages.indexOf(requestedFileName)
     };
@@ -43,18 +65,34 @@ listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length
 function listImagesFromDefindedIndex(l_startIndex, totFiles, images) {
     //selected index = 200
     //render till end
-    const slideRange = 20;
+    const slideRange = 3;
+  
 
     let startRange = Math.max( (l_startIndex - slideRange), 0);
     let endRange = Math.min( (l_startIndex + slideRange), totFiles);
-    			// if (startRange < slideRange){
-    			// 	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
-    			// }
-    			// //l_subFiles = Arrays.copyOfRange(l_Files, startRange, endRange);
-    console.log("images", startRange, endRange);
+    if (startRange < slideRange){
+    	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
+    }
+    let l_subFiles = images.slice(startRange, endRange);
+    console.log("images", startRange, endRange, l_subFiles);
+
      for (i=startRange; i<= endRange  ;i++) {
         console.log("images", images[i]);
-     }
+    }
+
+    let moreToGet = true;
+    if(endRange >= totFiles){
+        moreToGet = false;
+    }
+    
+    // if(moreToGet) {
+    //     listImagesFromDefindedIndex(l_startIndex, totFiles, images);
+    //     console.log("I run");
+    // }
+     // Determine if we are at the start of the run.
+     //let morePrevious = true;
+
+     console.log("Testing data", moreToGet, endRange);
 }
 
 

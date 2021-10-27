@@ -34,10 +34,11 @@ async function getDirFiles(folderName, requestedFileName) {
     }
 }
 //Calculate position of requested image.
-const l_startIndex = listOfImages.indexOf(requestedFileName);
+let l_startIndex = listOfImages.indexOf(requestedFileName);
 
 //Trim image count to defined range.
 const totFiles = dirs.length;
+
 if(totFiles == 0) {
     console.log(`No images found in given path`);
 }
@@ -47,53 +48,57 @@ let endRange = Math.min( (l_startIndex + slideRange), totFiles);
 if (startRange < slideRange){
     endRange = Math.min((slideRange-startRange)+endRange, totFiles);
 }
-let l_subFiles = images.slice(startRange, endRange);
+let l_subFiles = listOfImages.slice(startRange, endRange);
 
 
 //Recalculate start index for file sub set.
-const l_startIndex = l_subFiles.indexOf(requestedFileName);
+l_startIndex = l_subFiles.indexOf(requestedFileName);
 console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
 //listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length, listOfImages);
 
 return {
-        imageList: listOfImages.sort(), 
-        totalNumberOfImages:dirs.length,
-        requestedImageIndex:  listOfImages.indexOf(requestedFileName)
+       // imageList: listOfImages.sort(), 
+       imageList:  l_subFiles.sort(),
+       totFiles:dirs.length,
+        requestedImageIndex:  listOfImages.indexOf(requestedFileName),
+        startIndex: l_startIndex,
+        startImageIndex: startRange,
+        endImageIndex: endRange
     };
 }
 
-function listImagesFromDefindedIndex(l_startIndex, totFiles, images) {
-    //selected index = 200
-    //render till end
-    const slideRange = 3;
+// function listImagesFromDefindedIndex(l_startIndex, totFiles, images) {
+//     //selected index = 200
+//     //render till end
+//     const slideRange = 3;
   
 
-    let startRange = Math.max( (l_startIndex - slideRange), 0);
-    let endRange = Math.min( (l_startIndex + slideRange), totFiles);
-    if (startRange < slideRange){
-    	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
-    }
-    let l_subFiles = images.slice(startRange, endRange);
-    console.log("images", startRange, endRange, l_subFiles);
+//     let startRange = Math.max( (l_startIndex - slideRange), 0);
+//     let endRange = Math.min( (l_startIndex + slideRange), totFiles);
+//     if (startRange < slideRange){
+//     	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
+//     }
+//     let l_subFiles = images.slice(startRange, endRange);
+//     console.log("images", startRange, endRange, l_subFiles);
 
-     for (i=startRange; i<= endRange  ;i++) {
-        console.log("images", images[i]);
-    }
+//      for (i=startRange; i<= endRange  ;i++) {
+//         console.log("images", images[i]);
+//     }
 
-    let moreToGet = true;
-    if(endRange >= totFiles){
-        moreToGet = false;
-    }
+//     let moreToGet = true;
+//     if(endRange >= totFiles){
+//         moreToGet = false;
+//     }
     
-    // if(moreToGet) {
-    //     listImagesFromDefindedIndex(l_startIndex, totFiles, images);
-    //     console.log("I run");
-    // }
-     // Determine if we are at the start of the run.
-     //let morePrevious = true;
+//     // if(moreToGet) {
+//     //     listImagesFromDefindedIndex(l_startIndex, totFiles, images);
+//     //     console.log("I run");
+//     // }
+//      // Determine if we are at the start of the run.
+//      //let morePrevious = true;
 
-     console.log("Testing data", moreToGet, endRange);
-}
+//      console.log("Testing data", moreToGet, endRange);
+// }
 
 
 /**

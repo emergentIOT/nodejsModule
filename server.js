@@ -33,8 +33,10 @@ app.get("/", function(req, res) {
         //Return data for ejs to render.
         res.render('devices', {
             listOfImages: finalUrl, 
-            totalNumberOfImages: images.totalNumberOfImages,
-            imageAtIndex: images.requestedImageIndex
+            totalNumberOfImages: images.totFiles,
+            imageAtIndex: images.requestedImageIndex,
+            startIndex: images.startImageIndex,
+            endIndex: images.endImageIndex
         });
     }).catch(error => console.log(`Error: ${error}`));
 })

@@ -13,10 +13,21 @@
     <!--
         Bootstrap slider: https://getbootstrap.com/docs/5.1/components/carousel/#individual-carousel-item-interval
     -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!-- <% for (i=0; i< onlyImagesName.length; i++) { %>
+        <p><%= onlyImagesName[i] %> , <%= (i+1) + startIndex %></p>
+        <% } %> -->
+
+
+
+
+   <p>Showing Images <%= startIndex %> to <%= endIndex %> of <%= totalNumberOfImages %></p>
+    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel" data-interval="false" width="500px">
       <div class="carousel-inner">
+
         <% listOfImages.forEach(function(image, index) { %>
+            
             <div class="carousel-item <% if(index == 0) { %> active <% } %> ">
+               <p><%= image %> , <%= (index+1) + startIndex %></p>
                 <img class="d-block w-100" src="/<%= image %>" alt="First slide">
                 <!-- <div class="carousel-caption d-none d-md-block">
                     <h5>My Caption Title (1st Image)</h5>
@@ -34,10 +45,9 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <p>Total Number of images: <%= totalNumberOfImages %> </p>
+ 
     <p>The selected image is at : <%= imageAtIndex %></p>
-    <p>The start image is at is at : <%= startIndex %></p>
-    <p>The end image is at : <%= endIndex %></p>
+   
     
   </body>
 </html>

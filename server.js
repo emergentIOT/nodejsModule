@@ -26,13 +26,14 @@ app.get("/", function(req, res) {
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
         
         images.imageList.forEach(function(image) {
-           // freshImagesArray.push(getUrl + "/" + image);
+
             finalUrl.push(getUrl + "/" + image);
         });
        
         //Return data for ejs to render.
         res.render('devices', {
             listOfImages: finalUrl, 
+            onlyImagesName: images.imageList,
             totalNumberOfImages: images.totFiles,
             imageAtIndex: images.requestedImageIndex,
             startIndex: images.startImageIndex,

@@ -6,33 +6,41 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
  
-     
+    <script type="text/css">
+        .num{
+            background:#000;
+            color:#fff;
+            padding:10px;
+            width:50px;
+            text-align:center;
+        }
+    </script>
+</head>
+ 
+
+
    <body>
     <!--
         Bootstrap slider: https://getbootstrap.com/docs/5.1/components/carousel/#individual-carousel-item-interval
     -->
-    <!-- <% for (i=0; i< onlyImagesName.length; i++) { %>
-        <p><%= onlyImagesName[i] %> , <%= (i+1) + startIndex %></p>
-        <% } %> -->
+   
+    <p>Showing Images <%= startIndex %> to <%= endIndex %> of <%= totalNumberOfImages %></p>
+  
+   <% if(MorePrevious) { %>
+    <p>I have previous</p>
 
-
-
-
-   <p>Showing Images <%= startIndex %> to <%= endIndex %> of <%= totalNumberOfImages %></p>
-    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel" data-interval="false" width="500px">
+      <% } %> 
+   
+   <div id="carouselExampleIndicators" class="carousel" data-ride="carousel" data-interval="false" width="500px">
       <div class="carousel-inner">
 
         <% listOfImages.forEach(function(image, index) { %>
-            
-            <div class="carousel-item <% if(index == 0) { %> active <% } %> ">
-               <p><%= image %> , <%= (index+1) + startIndex %></p>
-                <img class="d-block w-100" src="/<%= image %>" alt="First slide">
-                <!-- <div class="carousel-caption d-none d-md-block">
-                    <h5>My Caption Title (1st Image)</h5>
-                    <p>The whole caption will only show up if the screen is at least medium size.</p>
-                </div> -->
+         
+            <div class="carousel-item  <% if(index == 0) { %> active <% } %> ">
+               <p><%= image %> , <%= (index) + startIndex %></p>
+                <img class="d-block w-100" src="/<%= image %>" prev-slides="<%= MorePrevious%>" fname="" more-slides="<%= moreToGet%>" alt="First slide">
             </div>
         <% }) %>
         </div>
@@ -44,10 +52,41 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
- 
-    <p>The selected image is at : <%= imageAtIndex %></p>
-   
+        
+    </div>  
+
+    <div class="num"></div>
+    
+    <script>
+            var totalItems = $('.carousel-item').length;
+            var currentIndex = $('div.carousel-item').index() + 1;
+
+            var down_index;
+            $('.num').html(''+currentIndex+'/'+totalItems+'');
+
+            /*
+            *   Slider events :
+            *
+            * 
+            */
+           //Next button 
+            $('a[data-slide="next"]').click(function(){
+                console.log("next click");
+                currentIndex += $('div.carousel-item').index() + 1;
+                if(currentIndex == 11 ){
+                    var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + '02_20190115_0003_22.39km.jpg';     
+                    window.location.assign(newURL);
+                }
+                $('.num').html(''+currentIndex+'/'+totalItems+'');
+            });
+            //Prev button
+            $('a[data-slide="prev"]').click(function(){
+                console.log("prev click");
+                currentIndex = currentIndex - $('div.carousel-item').index() - 1;
+                $('.num').html(''+currentIndex+'/'+totalItems+'');
+            });
+           </script>
     
   </body>
 </html>

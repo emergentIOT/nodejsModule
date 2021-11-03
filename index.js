@@ -19,6 +19,7 @@ async function getDirFiles(folderName, requestedFileName) {
     //Array to get list of images in requested directory.
     let listOfImages = [];
     const slideRange = 5;
+    let l_startIndex = 0;
     //Read directory. 
     const dirs = await fs.readdir(folderName, { withFileTypes: true });
     console.log(`Total number of images: ${dirs.length}`);
@@ -34,7 +35,7 @@ async function getDirFiles(folderName, requestedFileName) {
     }
 }
 //Calculate position of requested image.
-let l_startIndex = listOfImages.indexOf(requestedFileName);
+ l_startIndex = listOfImages.indexOf(requestedFileName);
 
 //Trim image count to defined range.
 const totFiles = dirs.length;
@@ -53,17 +54,31 @@ let l_subFiles = listOfImages.slice(startRange, endRange);
 
 //Recalculate start index for file sub set.
 l_startIndex = l_subFiles.indexOf(requestedFileName);
+
 console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
-//listImagesFromDefindedIndex(listOfImages.indexOf(requestedFileName), dirs.length, listOfImages);
+
+let moreToGet = true;
+let morePrevious = true;
+
+if(endRange >= totFiles) {
+    moreToGet = false;
+}
+
+if(startRange == 0) {
+    morePrevious = false;
+}
+let startOffset = 0;
 
 return {
        // imageList: listOfImages.sort(), 
-       imageList:  l_subFiles.sort(),
-       totFiles:dirs.length,
-        requestedImageIndex:  listOfImages.indexOf(requestedFileName),
+        imageList: l_subFiles.sort(),
+        totFiles: dirs.length,
+        requestedImageIndex: listOfImages.indexOf(requestedFileName),
         startIndex: l_startIndex,
         startImageIndex: startRange,
-        endImageIndex: endRange
+        endImageIndex: endRange,
+        checkMoreToGet: moreToGet,
+        checkMoreToPrevious: morePrevious
     };
 }
 

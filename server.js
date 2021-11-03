@@ -26,9 +26,9 @@ app.get("/", function(req, res) {
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
         
         images.imageList.forEach(function(image) {
-
             finalUrl.push(getUrl + "/" + image);
         });
+ // console.log("only images name", images);
        
         //Return data for ejs to render.
         res.render('devices', {
@@ -37,7 +37,10 @@ app.get("/", function(req, res) {
             totalNumberOfImages: images.totFiles,
             imageAtIndex: images.requestedImageIndex,
             startIndex: images.startImageIndex,
-            endIndex: images.endImageIndex
+            endIndex: images.endImageIndex,
+            moreToGet : images.checkMoreToGet,
+            MorePrevious : images.checkMoreToPrevious
         });
+        
     }).catch(error => console.log(`Error: ${error}`));
 })

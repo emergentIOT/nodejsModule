@@ -25,22 +25,22 @@ app.get("/", function(req, res) {
     
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
         
+        //Adding complete url
         images.imageList.forEach(function(image) {
             finalUrl.push(getUrl + "/" + image);
         });
- // console.log("only images name", images);
-       
+       console.log("Data", images);
         //Return data for ejs to render.
         res.render('devices', {
-            listOfImages: finalUrl, 
+           myData : { listOfImages: finalUrl, 
             onlyImagesName: images.imageList,
             totalNumberOfImages: images.totFiles,
             imageAtIndex: images.requestedImageIndex,
             startIndex: images.startImageIndex,
             endIndex: images.endImageIndex,
-            moreToGet : images.checkMoreToGet,
-            MorePrevious : images.checkMoreToPrevious
-        });
+            moreToGet: images.checkMoreToGet,
+            MorePrevious: images.checkMoreToPrevious
+        }});
         
     }).catch(error => console.log(`Error: ${error}`));
 })

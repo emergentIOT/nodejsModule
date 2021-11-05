@@ -32,7 +32,8 @@ app.get("/", function(req, res) {
        console.log("Data", images);
         //Return data for ejs to render.
         res.render('devices', {
-           myData : { listOfImages: finalUrl, 
+           myData : { 
+            listOfImages: finalUrl, 
             onlyImagesName: images.imageList,
             totalNumberOfImages: images.totFiles,
             imageAtIndex: images.requestedImageIndex,
@@ -40,7 +41,8 @@ app.get("/", function(req, res) {
             endIndex: images.endImageIndex,
             moreToGet: images.checkMoreToGet,
             MorePrevious: images.checkMoreToPrevious
-        }});
+        }
+    });
         
     }).catch(error => console.log(`Error: ${error}`));
 })

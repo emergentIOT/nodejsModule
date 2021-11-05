@@ -18,7 +18,7 @@ const path = require("path");
 async function getDirFiles(folderName, requestedFileName) {
     //Array to get list of images in requested directory.
     let listOfImages = [];
-    const slideRange = 5;
+    const slideRange = 20;
     let l_startIndex = 0;
     //Read directory. 
     const dirs = await fs.readdir(folderName, { withFileTypes: true });
@@ -55,6 +55,7 @@ let l_subFiles = listOfImages.slice(startRange, endRange);
 //Recalculate start index for file sub set.
 l_startIndex = l_subFiles.indexOf(requestedFileName);
 
+//Add logger
 console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
 
 let moreToGet = true;

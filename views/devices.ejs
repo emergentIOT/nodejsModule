@@ -80,12 +80,12 @@
                     var currentSlide = document.getElementById('index_' + currentIndex);
                     anAttr = 'more-slides';
                    
-                   // if( currentSlide.getAttribute(anAttr) == 'true' ){
+                   if( currentSlide.getAttribute(anAttr) == 'true' ){
                         var fName = currentSlide.getAttribute('fname');
                         var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
 				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
                         window.location.assign(newURL);
-                  // }
+                  }
                 }
                
                 $('.num').html(''+currentIndex+'/'+totalItems+'');

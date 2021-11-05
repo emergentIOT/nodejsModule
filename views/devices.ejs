@@ -40,14 +40,13 @@
          
             <div class="carousel-item  <% if(index == 0) { %> active <% } %> ">
                <p><%= image %> , <%= (index) + myData.startIndex %></p>
-                <img class="d-block w-100" src="/<%= image %>"  
-                prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" 
+                <img class="d-block w-100" src="/<%= image %>"   
                 alt="First slide">
             </div>
         <% }) %>
 
         <% myData.onlyImagesName.forEach(function(imageName, index) { %>
-        <div hidden u="caption" id="index_<%=index%>" 
+        <div hidden u="caption" id="index_<%=index + 1%>" 
         fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
         </div>
         <% }) %>
@@ -67,33 +66,26 @@
     <script>
             var currentIndex = $('div.carousel-item').index() + 1; // 1
             var totalItems = $('.carousel-item').length; // 8
-            
-
             var down_index;
 
             $('.num').html(''+currentIndex+'/'+totalItems+'');
-        
-            /*
-            *   Slider events :
-            *
-            * 
-            */
-
+            var anAttr = '';
            
-           var anAttr = '';
-           
-           //Next button 
+            //Next button 
             $('a[data-slide="next"]').click(function(done)  {
-                 currentIndex += $('div.carousel-item').index() + 1;
+                currentIndex += $('div.carousel-item').index() + 1;
                 console.log("curret index", currentIndex);
                 //End Slide.
                 if(currentIndex == totalItems) { 
                     var currentSlide = document.getElementById('index_' + currentIndex);
                     anAttr = 'more-slides';
-                    var fName = currentSlide.getAttribute('fname');
-                    var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
-				    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
-                    window.location.assign(newURL);
+                   
+                   // if( currentSlide.getAttribute(anAttr) == 'true' ){
+                        var fName = currentSlide.getAttribute('fname');
+                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+                        window.location.assign(newURL);
+                  // }
                 }
                
                 $('.num').html(''+currentIndex+'/'+totalItems+'');
@@ -106,13 +98,15 @@
               
                 //Start of slide.
                 if(currentIndex == 0) { 
-                    var currentSlide = document.getElementById('index_' + currentIndex);
+                    var currentSlide = document.getElementById('index_1');
                     anAttr = 'prev-slides';
-                    var fName = currentSlide.getAttribute('fname');
-                    var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
-				    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
-                    window.location.assign(newURL);
-                  
+                    
+                    if( currentSlide.getAttribute(anAttr) == 'true' ){
+                        var fName = currentSlide.getAttribute('fname');
+                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+                        window.location.assign(newURL);
+                    }
                 }
 
                 $('.num').html(''+currentIndex+'/'+totalItems+'');

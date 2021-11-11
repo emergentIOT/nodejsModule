@@ -1,3 +1,5 @@
+FOTI: Front of Train Image 
+
 Converting FOTI WAR file project to NODE JS module 
 
 FOTI Project files: \\asmet360\d$\Smallworld_430\gss430-jboss-6.1.0.Final\server\default\deploy\FOTI.war

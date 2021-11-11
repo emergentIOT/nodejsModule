@@ -1,9 +1,8 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-//1. TEMPLATING & SLIDER LIBRARY:done
+
 //3. Update it for NODE MODULE: created exports function, need to read more and test it as module.
-//4. Get path from URL : done, also formatted the URL and its working. : done
 //6. Handle exceptions : working
 //7. Adding logger
 //8. Cors
@@ -71,9 +70,9 @@ if(startRange == 0) {
 let startOffset = 0;
 
 return {
-       // imageList: listOfImages.sort(), 
+        // imageList: listOfImages.sort(), 
         imageList: l_subFiles.sort(),
-        totFiles: dirs.length,
+        totalFiles: dirs.length,
         requestedImageIndex: listOfImages.indexOf(requestedFileName),
         startIndex: l_startIndex,
         startImageIndex: startRange,
@@ -82,40 +81,6 @@ return {
         checkMoreToPrevious: morePrevious
     };
 }
-
-// function listImagesFromDefindedIndex(l_startIndex, totFiles, images) {
-//     //selected index = 200
-//     //render till end
-//     const slideRange = 3;
-  
-
-//     let startRange = Math.max( (l_startIndex - slideRange), 0);
-//     let endRange = Math.min( (l_startIndex + slideRange), totFiles);
-//     if (startRange < slideRange){
-//     	endRange = Math.min((slideRange-startRange)+endRange, totFiles);
-//     }
-//     let l_subFiles = images.slice(startRange, endRange);
-//     console.log("images", startRange, endRange, l_subFiles);
-
-//      for (i=startRange; i<= endRange  ;i++) {
-//         console.log("images", images[i]);
-//     }
-
-//     let moreToGet = true;
-//     if(endRange >= totFiles){
-//         moreToGet = false;
-//     }
-    
-//     // if(moreToGet) {
-//     //     listImagesFromDefindedIndex(l_startIndex, totFiles, images);
-//     //     console.log("I run");
-//     // }
-//      // Determine if we are at the start of the run.
-//      //let morePrevious = true;
-
-//      console.log("Testing data", moreToGet, endRange);
-// }
-
 
 /**
  * 
@@ -150,15 +115,6 @@ exports.getRequestedImage = getRequestedImage;
 /*
 CODE FOR DEBUGGING
 */
-
-// async function main() {
-//   //https://webgisnv.rail.nsw.gov.au/FOTI/?img=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\03_FOTI_EAST_HILLS\20200109_07\07_20200109_01331.jpg
-//   //get variable img and traverse it upto foldername
-  
-//   console.log(await traverseDirFiles(path.join(__dirname, "AIMS_DATA2/EASEMENT_IMAGES/03_FOTI_EAST_HILLS/20190115_03")));
-// }
-
-// main();
 
 /**
  * Extra code can be added

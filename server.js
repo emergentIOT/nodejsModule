@@ -35,7 +35,7 @@ app.get("/", function(req, res) {
            myData : { 
             listOfImages: finalUrl, 
             onlyImagesName: images.imageList,
-            totalNumberOfImages: images.totFiles,
+            totalNumberOfImages: images.totalFiles,
             imageAtIndex: images.requestedImageIndex,
             startIndex: images.startImageIndex,
             endIndex: images.endImageIndex,

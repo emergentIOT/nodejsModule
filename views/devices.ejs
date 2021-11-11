@@ -30,10 +30,9 @@
   
    <% if(myData.MorePrevious) { %>
     <p>I have previous</p>
-
-      <% } %> 
+    <% } %> 
    
-   <div id="carouselExampleIndicators" class="carousel" data-ride="carousel" data-interval="false" width="500px">
+   <div id="carouselExampleIndicators"  class="carousel slide" data-ride="carousel" data-interval="false" width="500px">
       <div class="carousel-inner">
 
         <% myData.listOfImages.forEach(function(image, index) { %>
@@ -43,13 +42,19 @@
                 <img class="d-block w-100" src="/<%= image %>"   
                 alt="First slide">
             </div>
+
+            <a href="/<%=image%>">+</a>
         <% }) %>
 
         <% myData.onlyImagesName.forEach(function(imageName, index) { %>
         <div hidden u="caption" id="index_<%=index + 1%>" 
         fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
         </div>
+       
         <% }) %>
+        <!--
+            Carasoul Next & Prev buttons
+        -->
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -95,7 +100,6 @@
             $('a[data-slide="prev"]').click(function()  {
                 currentIndex = currentIndex - $('div.carousel-item').index() - 1;
                
-              
                 //Start of slide.
                 if(currentIndex == 0) { 
                     var currentSlide = document.getElementById('index_1');
@@ -113,6 +117,10 @@
             });
            
            </script>
-    
+    <!--
+        Bullet Navigator
+    -->
+    <div data-u="navigator" class="jssorb05" style="bottom:8px;right:8px;" data-autocenter="1"><div data-u="prototype" style="width:16px;height:16px;"></div></div>
+
   </body>
 </html>

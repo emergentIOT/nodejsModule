@@ -17,6 +17,31 @@
             text-align:center;
         }
     </script>
+    <style type="text/css">
+        #myCarousel .list-inline {
+            white-space:nowrap;
+            overflow-x:auto;
+        }
+        
+        #myCarousel .carousel-indicators {
+            position: static;
+            left: initial;
+            width: initial;
+            margin-left: initial;
+        }
+        
+        #myCarousel .carousel-indicators > li {
+            width: initial;
+            height: initial;
+            text-indent: initial;
+        }
+        
+        #myCarousel .carousel-indicators > li.active img {
+            opacity: 0.7;
+        }
+
+
+    </style>
 </head>
  
 
@@ -32,34 +57,47 @@
     <p>I have previous</p>
     <% } %> 
    
-   <div id="carouselExampleIndicators"  class="carousel slide" data-ride="carousel" data-interval="false" width="500px">
+   <div id="myCarousel"  class="carousel" data-ride="carousel" data-interval="false" width="500px">
       <div class="carousel-inner">
 
         <% myData.listOfImages.forEach(function(image, index) { %>
          
-            <div class="carousel-item  <% if(index == 0) { %> active <% } %> ">
+            <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>" >
                <p><%= image %> , <%= (index) + myData.startIndex %></p>
                 <img class="d-block w-100" src="/<%= image %>"   
                 alt="First slide">
             </div>
-
-            <a href="/<%=image%>">+</a>
+ 
+            <!-- <a href="/<%=image%>">+</a> -->
         <% }) %>
-
+              <!-- Image Navigator.-->
+              <ul class="carousel-indicators list-inline mx-auto border px-2">
+                <% myData.listOfImages.forEach(function(imageName, index) { %>
+                <!-- <div hidden u="caption" id="index_<%=index + 1%>" 
+                fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
+                </div> -->
+                    <li class="list-inline-item ">
+                    
+                        <a id="carousel-selector-<%=  index %>" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
+                            <img src="/<%= imageName %>" class="img-fluid">
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        
         <% myData.onlyImagesName.forEach(function(imageName, index) { %>
-        <div hidden u="caption" id="index_<%=index + 1%>" 
-        fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
-        </div>
-       
-        <% }) %>
-        <!--
-            Carasoul Next & Prev buttons
-        -->
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <div hidden u="caption" id="index_<%=index + 1%>" 
+            fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
+            </div>
+            
+             <% }) %>     
+  
+        <!-- Carasoul Next & Prev buttons -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>

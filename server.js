@@ -14,8 +14,8 @@ app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 
 
 app.get("/", function(req, res) {
+    
     let finalUrl = [];
-    let freshImagesArray = [];
     //Get query params
     const queryObject = url.parse(req.url,true).query;
     //Get formatted URL

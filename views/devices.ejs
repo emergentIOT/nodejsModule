@@ -47,17 +47,13 @@
 
 
    <body>
-    <!--
-        Bootstrap slider: https://getbootstrap.com/docs/5.1/components/carousel/#individual-carousel-item-interval
-    -->
    
     <p>Showing Images <%= myData.startIndex %> to <%= myData.endIndex %> of <%= myData.totalNumberOfImages %></p>
   
-   <% if(myData.MorePrevious) { %>
-    <p>I have previous</p>
-    <% } %> 
+ 
    
-   <div id="myCarousel"  class="carousel" data-ride="carousel" data-interval="false" width="500px">
+   <div id="myCarousel"  class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
+       
       <div class="carousel-inner">
 
         <% myData.listOfImages.forEach(function(image, index) { %>
@@ -89,8 +85,7 @@
             <div hidden u="caption" id="index_<%=index + 1%>" 
             fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
             </div>
-            
-             <% }) %>     
+        <% }) %>     
   
         <!-- Carasoul Next & Prev buttons -->
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -114,6 +109,7 @@
             $('.num').html(''+currentIndex+'/'+totalItems+'');
             var anAttr = '';
            
+            //REMOVE EXTRA CODE
             //Next button 
             $('a[data-slide="next"]').click(function(done)  {
                 currentIndex += $('div.carousel-item').index() + 1;
@@ -155,10 +151,27 @@
             });
            
            </script>
-    <!--
-        Bullet Navigator
-    -->
-    <div data-u="navigator" class="jssorb05" style="bottom:8px;right:8px;" data-autocenter="1"><div data-u="prototype" style="width:16px;height:16px;"></div></div>
-
+  
+    
   </body>
 </html>
+
+<!--
+    EXTRA CODE 
+
+    --------------------------------------------------------
+    <% if(myData.MorePrevious) { %>
+    <p>I have previous</p>
+    <% } %>  
+
+    --------------------------------------------------------
+    Bullet Navigator used in FOTI:
+    <div data-u="navigator" class="jssorb05" style="bottom:8px;right:8px;" data-autocenter="1"><div data-u="prototype" style="width:16px;height:16px;"></div></div>
+
+    --------------------------------------------------------
+
+    Bootstrap slider: https://getbootstrap.com/docs/5.1/components/carousel/#individual-carousel-item-interval
+   
+
+
+-->

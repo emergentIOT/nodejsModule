@@ -18,18 +18,19 @@ app.get("/", function(req, res) {
     let finalUrl = [];
     //Get query params
     const queryObject = url.parse(req.url,true).query;
+    console.log("query object,", queryObject.PTIV);
     //Get formatted URL
     const getUrl =  getListOfImages.formatQueryParam(queryObject);
     //Get list of images in requested dir
     const requestedFile = getListOfImages.getRequestedImage(queryObject);
     
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
-        
+        console.log("Data", images); 
         //Adding complete url
         images.imageList.forEach(function(image) {
             finalUrl.push(getUrl + "/" + image);
         });
-       console.log("Data", images);
+      
         //Return data for ejs to render.
         res.render('devices', {
            myData : { 
@@ -41,8 +42,10 @@ app.get("/", function(req, res) {
             endIndex: images.endImageIndex,
             moreToGet: images.checkMoreToGet,
             MorePrevious: images.checkMoreToPrevious
+              
         }
-    });
         
+    })
+    
     }).catch(error => console.log(`Error: ${error}`));
 })

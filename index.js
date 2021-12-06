@@ -55,7 +55,7 @@ let l_subFiles = listOfImages.slice(startRange, endRange);
 l_startIndex = l_subFiles.indexOf(requestedFileName);
 
 //Add logger
-console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
+//console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
 
 let moreToGet = true;
 let morePrevious = true;

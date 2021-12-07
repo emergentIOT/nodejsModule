@@ -18,6 +18,7 @@ app.get("/", function(req, res) {
     let finalUrl = [];
     //Get query params
     const queryObject = url.parse(req.url,true).query;
+
     console.log("query object,", queryObject.PTIV);
     //Get formatted URL
     const getUrl =  getListOfImages.formatQueryParam(queryObject);

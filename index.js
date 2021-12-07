@@ -108,9 +108,56 @@ return {
     return splitUrl[splitUrl.length - 1];
 }
 
+/**
+ * Functions for POLE 
+ * @param {Pole Object} queryObject 
+ * @returns 
+ */
+
+function formatPoleQueryParam(queryObject) {
+    //Trim image count to defined range.
+    //Calculate startRange and endrange
+    
+    var allUrl = [];
+     
+  
+
+    if(!queryObject) {
+        console.log(`No Query param available : ${queryObject}`)
+    }
+
+    for(i=0;i<queryObject.PTIV;i++)
+    {
+        console.log("i - ", i);
+        if(i==0) {
+            var formatUrl = [];
+            let splitUrl = queryObject['url'].toString().split("\\");             
+            for (j = 3 ; j < splitUrl.length ; j++ ) {
+                formatUrl.push(splitUrl[j]);
+            }
+            allUrl.push(formatUrl.join('/'));
+             
+        } else {
+            var formatUrl = [];
+        let splitUrl1 = queryObject['url' + i.toString()].toString().split("\\");
+        for (k = 3 ; k < splitUrl1.length ; k++ ) {
+           formatUrl.push(splitUrl1[k]);
+            }
+           // formatUrl.join('/')
+            allUrl.push(formatUrl.join('/'));    
+        }
+        console.log("allurl *****", allUrl);
+   
+   
+    }
+// return formatUrl.join('/');
+return allUrl;
+}
+
 exports.getDirFiles = getDirFiles;
 exports.formatQueryParam = formatQueryParam;
 exports.getRequestedImage = getRequestedImage;
+exports.formatPoleQueryParam = formatPoleQueryParam;
 
 /*
 CODE FOR DEBUGGING

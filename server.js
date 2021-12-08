@@ -16,19 +16,21 @@ app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 app.get("/", function(req, res) {
     
     let finalUrl = [];
-    //Get query params
     const queryObject = url.parse(req.url,true).query;
 
-    console.log("query object,", queryObject.PTIV);
+    //If POLE Url requsted.
     if(queryObject.PTIV!=null){
-        const getUrl =  getListOfImages.formatPoleQueryParam(queryObject);
-        res.render('pole', { getUrl });
-       }
+        getListOfImages.formatPoleQueryParam(queryObject).then(images => {
+             res.render('pole', { 
+                 myData: {
+                    poleImages: images.listOfPoleImages 
+                    }
+                });
+        }).catch(error => console.log(`Error: ${error}`));
+    return;
+    }
     //Get formatted URL
     const getUrl =  getListOfImages.formatQueryParam(queryObject);
-    //Get list of images in requested dir
-   console.log(getUrl);
-   
    
     const requestedFile = getListOfImages.getRequestedImage(queryObject);
     

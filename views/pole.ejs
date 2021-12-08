@@ -47,18 +47,24 @@
 
 
    <body>
-<h1>Thanks for requesting</h1>
-<div id="myCarousel"  class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
+
+<div id="myCarousel" class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
     <div class="carousel-inner">
-    <% getUrl.forEach(function(image, index) { %>
-     
-        <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>" >
-         
-             <img class="d-block w-100" width="100%" height="100%" src="/<%= image %>"   
-             alt="First slide">
-         </div>
-                
-     <% })%>
+        <% myData.poleImages.forEach(function(image, index) { %>
+
+            <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>">
+
+                <img class="d-block w-100" width="100%" height="100%" src="/<%= image %>" alt="First slide">
+            </div>
+            <!-- <ul class="carousel-indicators list-inline mx-auto border px-2">
+                <li class="list-inline-item ">
+                    
+                    <a id="carousel-selector-<%=  index %>" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
+                        <img src="/<%= image %>" class="img-fluid">
+                    </a>
+                </li>
+             </ul>    -->
+            <% })%>
     </div>
        <!-- Carasoul Next & Prev buttons -->
        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

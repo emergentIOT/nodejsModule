@@ -114,13 +114,10 @@ return {
  * @returns 
  */
 
-function formatPoleQueryParam(queryObject) {
+async function formatPoleQueryParam(queryObject) {
     //Trim image count to defined range.
     //Calculate startRange and endrange
-    
-    var allUrl = [];
-     
-  
+    var requestedUrl = [];
 
     if(!queryObject) {
         console.log(`No Query param available : ${queryObject}`)
@@ -128,45 +125,32 @@ function formatPoleQueryParam(queryObject) {
 
     for(i=0;i<queryObject.PTIV;i++)
     {
-      
-        if(i==0) {
-            var formatUrl = [];
-            let splitUrl = queryObject['url'].toString().split("\\");             
-            for (j = 3 ; j < splitUrl.length ; j++ ) {
-                formatUrl.push(splitUrl[j]);
-            }
-            allUrl.push(formatUrl.join('/'));
-             
+        if (i == 0) {
+          var formatUrl = [];
+          let splitUrl = queryObject["url"].toString().split("\\");
+          for (j = 3; j < splitUrl.length; j++) {
+            formatUrl.push(splitUrl[j]);
+          }
+          requestedUrl.push(formatUrl.join("/"));
         } else {
-            var formatUrl = [];
-        let splitUrl1 = queryObject['url' + i.toString()].toString().split("\\");
-        for (k = 3 ; k < splitUrl1.length ; k++ ) {
-           formatUrl.push(splitUrl1[k]);
-            }
-           // formatUrl.join('/')
-            allUrl.push(formatUrl.join('/'));    
+          var formatUrl = [];
+          let splitUrl1 = queryObject["url" + i.toString()].toString().split("\\");
+          for (k = 3; k < splitUrl1.length; k++) {
+            formatUrl.push(splitUrl1[k]);
+          }
+          requestedUrl.push(formatUrl.join("/"));
         }
       
    
    
     }
-// return formatUrl.join('/');
-return allUrl;
+
+return  { 
+         listOfPoleImages: requestedUrl 
+    };
 }
 
 exports.getDirFiles = getDirFiles;
 exports.formatQueryParam = formatQueryParam;
 exports.getRequestedImage = getRequestedImage;
 exports.formatPoleQueryParam = formatPoleQueryParam;
-
-/*
-CODE FOR DEBUGGING
-*/
-
-/**
- * Extra code can be added
- * const cors = require('cors');
- * //app.use(cors({ origin: /http:\/\/localhost/ }));
-    //app.options('*', cors());
- * 
- */

@@ -128,7 +128,7 @@ function formatPoleQueryParam(queryObject) {
 
     for(i=0;i<queryObject.PTIV;i++)
     {
-        console.log("i - ", i);
+      
         if(i==0) {
             var formatUrl = [];
             let splitUrl = queryObject['url'].toString().split("\\");             
@@ -146,7 +146,7 @@ function formatPoleQueryParam(queryObject) {
            // formatUrl.join('/')
             allUrl.push(formatUrl.join('/'));    
         }
-        console.log("allurl *****", allUrl);
+      
    
    
     }

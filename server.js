@@ -20,9 +20,16 @@ app.get("/", function(req, res) {
     const queryObject = url.parse(req.url,true).query;
 
     console.log("query object,", queryObject.PTIV);
+    if(queryObject.PTIV!=null){
+        const getUrl =  getListOfImages.formatPoleQueryParam(queryObject);
+        res.render('pole', { getUrl });
+       }
     //Get formatted URL
     const getUrl =  getListOfImages.formatQueryParam(queryObject);
     //Get list of images in requested dir
+   console.log(getUrl);
+   
+   
     const requestedFile = getListOfImages.getRequestedImage(queryObject);
     
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {

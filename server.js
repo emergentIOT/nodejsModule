@@ -12,7 +12,9 @@ app.use('/AIMS_DATA2', express.static(path.resolve(__dirname, 'AIMS_DATA2')));
 app.set('view engine', 'ejs');
 app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 
-
+/**
+ * Manging FOTI Url & POLE Url
+ */
 app.get("/", function(req, res) {
     
     let finalUrl = [];
@@ -21,6 +23,7 @@ app.get("/", function(req, res) {
     //If POLE Url requsted.
     if(queryObject.PTIV!=null){
         getListOfImages.formatPoleQueryParam(queryObject).then(images => {
+            console.log("POLE Data", images);
              res.render('pole', { 
                  myData: {
                     poleImages: images.listOfPoleImages 

@@ -10,14 +10,18 @@ FOTI Working link: https://webgisnv.rail.nsw.gov.au/FOTI/?img=\\asmet032\AIMS_DA
 NODE JS
 FOTI TESTING LINKS:
 /**
- * TEST URL : http://localhost:5000/?url=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\01_FOTI_BANKSTOWN\20190115_02\02_201901070919_02585.jpg
- * TEST URL : http://localhost:5000/?url=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\03_FOTI_EAST_HILLS\20190115_03\07_20200109_01331.jpg
+ * TEST URL : http://localhost:5000/?img=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\01_FOTI_BANKSTOWN\20190115_02\02_201901070919_02585.jpg
+ * TEST URL : http://localhost:5000/?img=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\03_FOTI_EAST_HILLS\20190115_03\07_20200109_01331.jpg
+
+ * https://webgisnv.rail.nsw.gov.au/FOTI/?img=\\asmet032\AIMS_DATA2\EASEMENT_IMAGES\03_FOTI_EAST_HILLS\20200109_05\05_20200109_04732_11.31km.jpg
  */
 
  POLE TESTING LINKS:
 
 /**
- * TEST URL : http://localhost:5000/?url=\\asmet032\AIMS_DATA2\field_data\2016\Pole%20Top\873\20151208fdr0873pole0112.JPG&url1=\\asmet032\AIMS_DATA2\field_data\2018\Pole%20Top\Western\873_112.jpg&PTIV=2
+ * TEST URL : http://localhost:5000/?img=\\asmet032\AIMS_DATA2\field_data\2016\Pole%20Top\873\20151208fdr0873pole0112.JPG&img1=\\asmet032\AIMS_DATA2\field_data\2018\Pole%20Top\Western\873_112.jpg&PTIV=2
+
+ * https://webgisnv.rail.nsw.gov.au/FOTI/?img=\\asmet032\AIMS_DATA2\field_data\2016\Pole%20Top\873\20151208fdr0873pole0112.JPG&img1=\\asmet032\AIMS_DATA2\field_data\2018\Pole%20Top\Western\873_112.jpg&PTIV=2
 
 
 

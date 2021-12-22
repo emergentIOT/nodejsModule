@@ -96,7 +96,7 @@ return {
     if(!queryObject) {
         console.log(`No Query param available : ${queryObject}`)
     }
-    const splitUrl = queryObject.url.split("\\");
+    const splitUrl = queryObject.img.split("\\");
     for (i = 3 ; i < splitUrl.length - 1 ; i++ ) {
         formatUrl.push(splitUrl[i]);
     }
@@ -104,7 +104,7 @@ return {
 }
 
  function getRequestedImage(queryObject) {
-    const splitUrl = queryObject.url.split("\\");
+    const splitUrl = queryObject.img.split("\\");
     return splitUrl[splitUrl.length - 1];
 }
 
@@ -127,14 +127,14 @@ async function formatPoleQueryParam(queryObject) {
     {
         if (i == 0) {
           var formatUrl = [];
-          let splitUrl = queryObject["url"].toString().split("\\");
+          let splitUrl = queryObject["img"].toString().split("\\");
           for (j = 3; j < splitUrl.length; j++) {
             formatUrl.push(splitUrl[j]);
           }
           requestedUrl.push(formatUrl.join("/"));
         } else {
           var formatUrl = [];
-          let splitUrl1 = queryObject["url" + i.toString()].toString().split("\\");
+          let splitUrl1 = queryObject["img" + i.toString()].toString().split("\\");
           for (k = 3; k < splitUrl1.length; k++) {
             formatUrl.push(splitUrl1[k]);
           }

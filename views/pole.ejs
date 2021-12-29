@@ -45,19 +45,14 @@
 
     </style>
 </head>
-<body style="margin-top: 0">
+<body>
     <div id="myCarousel" class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
     <div class="carousel-inner">
-  
         <% myData.poleImages.forEach(function(image, index) { %>
-
             <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>">
-               
-                <img  intrinsicsize="350 x 600" class="rounded mx-auto d-block" style="float: center;" height="100%"  src="/<%= image %>" alt="First slide"  >
-               
-
+               <img  intrinsicsize="350 x 600" class="rounded mx-auto d-block" style="float: center;" height="100%"  src="/<%= image %>" alt="First slide"  >
             </div>
-            <% })%>
+        <% })%>
 
             <!--Navigator-->
             <ul class="carousel-indicators list-inline mx-auto border px-2"></ul>
@@ -73,15 +68,15 @@
              <% })%>
             </ul>  
     </div>
-       <!-- Carasoul Next & Prev buttons -->
-       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only" >Previous</span>
+        <!-- Carasoul Next & Prev buttons -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only" >Previous</span>
         </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </body>
 </html>

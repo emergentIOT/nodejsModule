@@ -2,7 +2,7 @@ const fs = require("fs").promises;
 const path = require("path");
 
 
-//3. Update it for NODE MODULE: created exports function, need to read more and test it as module.
+// Add postman test
 //6. Handle exceptions : working
 //7. Adding logger
 //8. Cors
@@ -24,11 +24,9 @@ async function getDirFiles(folderName, requestedFileName) {
     console.log(`Total number of images: ${dirs.length}`);
     for (const item of dirs) {
         if(item.isDirectory()) {
-           //listOfImages = listOfImages.concat(await traverseDirFiles(path.join(folderName, item.name)));
            listOfImages = listOfImages.concat(item.name);
         } else {
             if (path.extname(item.name) === ".jpg") {
-            //listOfImages.push(path.join(folderName, item.name));
             listOfImages.push(item.name);
         }
     }
@@ -54,9 +52,6 @@ let l_subFiles = listOfImages.slice(startRange, endRange);
 //Recalculate start index for file sub set.
 l_startIndex = l_subFiles.indexOf(requestedFileName);
 
-//Add logger
-//console.log("Testing", startRange, endRange, l_subFiles, l_startIndex);
-
 let moreToGet = true;
 let morePrevious = true;
 
@@ -70,7 +65,6 @@ if(startRange == 0) {
 let startOffset = 0;
 
 return {
-        // imageList: listOfImages.sort(), 
         imageList: l_subFiles.sort(),
         totalFiles: dirs.length,
         requestedImageIndex: listOfImages.indexOf(requestedFileName),
@@ -140,9 +134,6 @@ async function formatPoleQueryParam(queryObject) {
           }
           requestedUrl.push(formatUrl.join("/"));
         }
-      
-   
-   
     }
 
 return  { 

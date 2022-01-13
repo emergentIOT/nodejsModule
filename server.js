@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 
 /**
- * Manging FOTI Url & POLE Url
+ * Handling FOTI Url & POLE Url
  */
 app.get("/", function(req, res) {
     
@@ -24,7 +24,7 @@ app.get("/", function(req, res) {
     if(queryObject.PTIV!=null){
         getListOfImages.formatPoleQueryParam(queryObject).then(images => {
             console.log("POLE Data", images);
-             res.render('pole', { 
+             res.render('poleUI', { 
                  myData: {
                     poleImages: images.listOfPoleImages 
                     }
@@ -45,7 +45,7 @@ app.get("/", function(req, res) {
         });
       
         //Return data for ejs to render.
-        res.render('devices', {
+        res.render('fotiUI', {
            myData : { 
             listOfImages: finalUrl, 
             onlyImagesName: images.imageList,

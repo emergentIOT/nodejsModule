@@ -1,0 +1,177 @@
+
+<html lang="en">
+    <head>
+    <title>FOTI_WEB GIS NV</title>
+    <!--Libraries for -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+ 
+    <script type="text/css">
+        .num{
+            background:#000;
+            color:#fff;
+            padding:10px;
+            width:50px;
+            text-align:center;
+        }
+    </script>
+    <style type="text/css">
+        #myCarousel .list-inline {
+            white-space:nowrap;
+            overflow-x:auto;
+        }
+        
+        #myCarousel .carousel-indicators {
+            position: static;
+            left: initial;
+            width: initial;
+            margin-left: initial;
+        }
+        
+        #myCarousel .carousel-indicators > li {
+            width: initial;
+            height: initial;
+            text-indent: initial;
+        }
+        
+        #myCarousel .carousel-indicators > li.active img {
+            opacity: 0.7;
+        }
+
+
+    </style>
+</head>
+ 
+
+
+   <body>
+   
+    <p>Showing Images <%= myData.startIndex %> to <%= myData.endIndex %> of <%= myData.totalNumberOfImages %></p>
+  
+ 
+   <!--Slider Div-->
+   <div id="myCarousel"  class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
+       
+      <div class="carousel-inner">
+
+        <% myData.listOfImages.forEach(function(image, index) { %>
+         
+            <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>" >
+               <p><%= image %> , <%= (index) + myData.startIndex %></p>
+                <img class="d-block w-100" src="/<%= image %>"   
+                alt="First slide">
+            </div>
+ 
+            <!-- <a href="/<%=image%>">+</a> -->
+        <% }) %>
+              <!-- Image Navigator.-->
+              <ul class="carousel-indicators list-inline mx-auto border px-2">
+                <% myData.listOfImages.forEach(function(imageName, index) { %>
+                <!-- <div hidden u="caption" id="index_<%=index + 1%>" 
+                fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
+                </div> -->
+                    <li class="list-inline-item ">
+                    
+                        <a id="carousel-selector-<%=  index %>" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
+                            <img src="/<%= imageName %>" class="img-fluid">
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        
+        <% myData.onlyImagesName.forEach(function(imageName, index) { %>
+            <div hidden u="caption" id="index_<%=index + 1%>" 
+            fname="<%=imageName%>"  prev-slides="<%= myData.MorePrevious%>" more-slides="<%= myData.moreToGet%>" style="position: absolute; top: 25px; left: 5px; background-color: #ffffff">08_20200106_05235.jpg(5236)</div>
+            </div>
+        <% }) %>     
+  
+        <!-- Carasoul Next & Prev buttons -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        
+    </div>  
+
+    <div class="num"></div>
+    
+    <script>
+            var currentIndex = $('div.carousel-item').index() + 1; // 1
+            var totalItems = $('.carousel-item').length; // 8
+            var down_index;
+
+            $('.num').html(''+currentIndex+'/'+totalItems+'');
+            var anAttr = '';
+           
+            //REMOVE EXTRA CODE
+            //Next button 
+            $('a[data-slide="next"]').click(function(done)  {
+                currentIndex += $('div.carousel-item').index() + 1;
+                console.log("curret index", currentIndex);
+                //End Slide.
+                if(currentIndex == totalItems) { 
+                    var currentSlide = document.getElementById('index_' + currentIndex);
+                    anAttr = 'more-slides';
+                   
+                   if( currentSlide.getAttribute(anAttr) == 'true' ){
+                        var fName = currentSlide.getAttribute('fname');
+                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+                        window.location.assign(newURL);
+                  }
+                }
+               
+                $('.num').html(''+currentIndex+'/'+totalItems+'');
+            });
+
+            //Prev button
+            $('a[data-slide="prev"]').click(function()  {
+                currentIndex = currentIndex - $('div.carousel-item').index() - 1;
+               
+                //Start of slide.
+                if(currentIndex == 0) { 
+                    var currentSlide = document.getElementById('index_1');
+                    anAttr = 'prev-slides';
+                    
+                    if( currentSlide.getAttribute(anAttr) == 'true' ){
+                        var fName = currentSlide.getAttribute('fname');
+                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+                        window.location.assign(newURL);
+                    }
+                }
+
+                $('.num').html(''+currentIndex+'/'+totalItems+'');
+            });
+           
+           </script>
+  
+    
+  </body>
+</html>
+
+<!--
+    EXTRA CODE 
+
+    --------------------------------------------------------
+    <% if(myData.MorePrevious) { %>
+    <p>I have previous</p>
+    <% } %>  
+
+    --------------------------------------------------------
+    Bullet Navigator used in FOTI:
+    <div data-u="navigator" class="jssorb05" style="bottom:8px;right:8px;" data-autocenter="1"><div data-u="prototype" style="width:16px;height:16px;"></div></div>
+
+    --------------------------------------------------------
+
+    Bootstrap slider: https://getbootstrap.com/docs/5.1/components/carousel/#individual-carousel-item-interval
+   
+
+
+-->

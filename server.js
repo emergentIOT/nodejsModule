@@ -15,11 +15,11 @@ app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 /**
  * Handling FOTI Url & POLE Url
  */
+
 app.get("/", function(req, res) {
     
     let finalUrl = [];
     const queryObject = url.parse(req.url,true).query;
-
     //If POLE Url requsted.
     if(queryObject.PTIV!=null){
         getListOfImages.formatPoleQueryParam(queryObject).then(images => {
@@ -61,4 +61,10 @@ app.get("/", function(req, res) {
     })
     
     }).catch(error => console.log(`Error: ${error}`));
+})
+
+// Invalid URL
+app.get("*", function(req, res) {
+    
+    res.status(400).send({ message: 'Invalid URL' });
 })

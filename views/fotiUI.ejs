@@ -109,7 +109,6 @@
             $('.num').html(''+currentIndex+'/'+totalItems+'');
             var anAttr = '';
            
-            //REMOVE EXTRA CODE
             //Next button 
             $('a[data-slide="next"]').click(function(done)  {
                 currentIndex += $('div.carousel-item').index() + 1;
@@ -133,7 +132,7 @@
             //Prev button
             $('a[data-slide="prev"]').click(function()  {
                 currentIndex = currentIndex - $('div.carousel-item').index() - 1;
-               
+                console.log("curret index", currentIndex);
                 //Start of slide.
                 if(currentIndex == 0) { 
                     var currentSlide = document.getElementById('index_1');

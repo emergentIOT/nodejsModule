@@ -38,7 +38,7 @@ app.get("/", function(req, res) {
     const requestedFile = getListOfImages.getRequestedImage(queryObject);
     
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
-        console.log("Data", images); 
+        console.log("FOTI Data", images); 
         //Adding complete url
         images.imageList.forEach(function(image) {
             finalUrl.push(getUrl + "/" + image);

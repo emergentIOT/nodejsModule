@@ -1,6 +1,7 @@
 FOTI: Front of Train Image 
-
 Converting FOTI WAR file project to NODE JS module 
+
+FOTI Project files: \\asmet360\d$\Smallworld_430\gss430-jboss-6.1.0.Final\server\default\deploy\FOTI.war
 
 1. Copy NODE JS dir to C:\newModule\nodejsModule
 
@@ -9,8 +10,6 @@ Converting FOTI WAR file project to NODE JS module
 * This appliction is setup as a service using NSSM for windows system
     - https://nssm.cc/usage
     - start-server.bat file is used to start the application as a service
-
-FOTI Project files: \\asmet360\d$\Smallworld_430\gss430-jboss-6.1.0.Final\server\default\deploy\FOTI.war
 
 3. IMAGES DIR:
 

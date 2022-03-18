@@ -13,18 +13,18 @@ app.set('view engine', 'ejs');
 app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 
 /**
- * Manging FOTI Url & POLE Url
+ * Handling FOTI Url & POLE Url
  */
+
 app.get("/", function(req, res) {
     
     let finalUrl = [];
     const queryObject = url.parse(req.url,true).query;
-
     //If POLE Url requsted.
     if(queryObject.PTIV!=null){
         getListOfImages.formatPoleQueryParam(queryObject).then(images => {
             console.log("POLE Data", images);
-             res.render('pole', { 
+             res.render('poleUI', { 
                  myData: {
                     poleImages: images.listOfPoleImages 
                     }
@@ -38,14 +38,14 @@ app.get("/", function(req, res) {
     const requestedFile = getListOfImages.getRequestedImage(queryObject);
     
     getListOfImages.getDirFiles(path.join(__dirname, getUrl), requestedFile).then(images => {
-        console.log("Data", images); 
+        console.log("FOTI Data", images); 
         //Adding complete url
         images.imageList.forEach(function(image) {
             finalUrl.push(getUrl + "/" + image);
         });
       
         //Return data for ejs to render.
-        res.render('devices', {
+        res.render('fotiUI', {
            myData : { 
             listOfImages: finalUrl, 
             onlyImagesName: images.imageList,
@@ -61,4 +61,10 @@ app.get("/", function(req, res) {
     })
     
     }).catch(error => console.log(`Error: ${error}`));
+})
+
+// Invalid URL
+app.get("*", function(req, res) {
+    
+    res.status(400).send({ message: 'Invalid URL' });
 })

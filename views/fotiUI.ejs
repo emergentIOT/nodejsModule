@@ -74,7 +74,7 @@
                 </div> -->
                     <li class="list-inline-item ">
                     
-                        <a id="carousel-selector-<%=  index %>" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
+                        <a class="mine" id="carousel-selector-<%=  index %>" onclick="changeImage(`<%= index %>`)" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
                             <img src="/<%= imageName %>" class="img-fluid">
                         </a>
                     </li>
@@ -98,43 +98,18 @@
         </a>
         
     </div>  
-
-    <div class="num"></div>
     
     <script>
-            var currentIndex = $('div.carousel-item').index() + 1; // 1
-            var totalItems = $('.carousel-item').length; // 8
-            var down_index;
+            var currentImage = $(this).attr('data-slide-to');
+            currentImage = $('div.carousel-item').index() + 1;
 
-            $('.num').html(''+currentIndex+'/'+totalItems+'');
-            var anAttr = '';
-           
-            //Next button 
-            $('a[data-slide="next"]').click(function(done)  {
-                currentIndex += $('div.carousel-item').index() + 1;
-                console.log("curret index", currentIndex);
-                //End Slide.
-                if(currentIndex == totalItems) { 
-                    var currentSlide = document.getElementById('index_' + currentIndex);
-                    anAttr = 'more-slides';
-                   
-                   if( currentSlide.getAttribute(anAttr) == 'true' ){
-                        var fName = currentSlide.getAttribute('fname');
-                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
-				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
-                        window.location.assign(newURL);
-                  }
-                }
-               
-                $('.num').html(''+currentIndex+'/'+totalItems+'');
-            });
+            var imagesTotal = $('.carousel-item').length;
 
-            //Prev button
-            $('a[data-slide="prev"]').click(function()  {
-                currentIndex = currentIndex - $('div.carousel-item').index() - 1;
-                console.log("curret index", currentIndex);
-                //Start of slide.
-                if(currentIndex == 0) { 
+            //Previous image control
+            $('a.carousel-control-prev').click(function() {
+                currentImage--;
+                if(currentImage == 0) {
+                    alert('i am at start');
                     var currentSlide = document.getElementById('index_1');
                     anAttr = 'prev-slides';
                     
@@ -144,10 +119,110 @@
 				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
                         window.location.assign(newURL);
                     }
+                }               
+
+                console.log("prev", currentImage);
+            });
+
+            //Next image control
+            $('a.carousel-control-next').click(function() {
+                currentImage++;
+              
+                if(currentImage == imagesTotal + 1) { 
+                    alert("i am at last");
+                    var currentSlide = document.getElementById('index_' + currentImage);
+                    console.log("currentslide", currentSlide);
+                    anAttr = 'more-slides';
+                   
+                   if( currentSlide.getAttribute(anAttr) == 'true' ){
+                        var fName = currentSlide.getAttribute('fname');
+                        var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+				        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+                        window.location.assign(newURL);
+                  }
                 }
 
-                $('.num').html(''+currentIndex+'/'+totalItems+'');
+                console.log("next", currentImage)
             });
+
+            function changeImage(imageNumber) {
+
+                var i = parseInt(imageNumber) + 1;
+                currentImage = i;
+                console.log("selected", currentImage);
+            }
+
+
+            // var currentIndex = $('div.carousel-item').index() + 1; // 1
+            // var totalItems = $('.carousel-item').length; // 8
+            // var down_index;
+
+            // $('.num').html(''+currentIndex+'/'+totalItems+'');
+            // var anAttr = '';
+           
+            // //Will trigger if clicked on navigator images.
+            // $('a.mine').click(function() {
+            //     console.log("clikced", $(this).attr('data-slide-to'));
+            // })
+            // //Next button 
+            //  $('a[data-slide="next"]').click(function()  {
+            // //    $('a').click(function(done)  {
+                
+            //     currentIndex += $('div.carousel-item').index() + 1;
+            //     console.log("curret index", currentIndex);
+            //     //End Slide.
+            //     if(currentIndex == totalItems) { 
+            //         var currentSlide = document.getElementById('index_' + currentIndex);
+            //         anAttr = 'more-slides';
+                   
+            //        if( currentSlide.getAttribute(anAttr) == 'true' ){
+            //             var fName = currentSlide.getAttribute('fname');
+            //             var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+			// 	        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+            //             window.location.assign(newURL);
+            //       }
+            //     }
+
+            //     if(currentIndex == 1) {
+            //         console.log("i am at 1");
+            //     }
+
+            //     if(currentIndex == 12) {
+            //         console.log("i am at 12");
+            //     }
+               
+            //     $('.num').html(''+currentIndex+'/'+totalItems+'');
+            // });
+
+            // //Prev button
+            //  $('a[data-slide="prev"]').click(function()  {
+            // //    $('a').click(function()  {
+            //         console.log("i am done:prev", done);
+            //     currentIndex = currentIndex - $('div.carousel-item').index() - 1;
+            //     console.log("curret index", currentIndex);
+            //     //Start of slide.
+            //     if(currentIndex == 0) { 
+            //         var currentSlide = document.getElementById('index_1');
+            //         anAttr = 'prev-slides';
+                    
+            //         if( currentSlide.getAttribute(anAttr) == 'true' ){
+            //             var fName = currentSlide.getAttribute('fname');
+            //             var currentURL = decodeURIComponent((window.location.href+'').replace(/\+/g, '%20'));
+			// 	        var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;     
+            //             window.location.assign(newURL);
+            //         }
+            //     }
+
+            //     if(currentIndex == 1) {
+            //         console.log("i am at 1");
+            //     }
+
+            //     if(currentIndex == 12) {
+            //         console.log("i am at 12");
+            //     }
+
+            //     $('.num').html(''+currentIndex+'/'+totalItems+'');
+            // });
            
            </script>
   

@@ -80,57 +80,59 @@
                     </a>
 
                 </div>
+
+           
                 <!-- main slider carousel nav controls -->
 
 
                 <ul class="carousel-indicators list-inline mx-auto border px-2">
                     <li class="list-inline-item active">
-                        <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                        <a id="carousel-selector-0" onclick="changeImage(1)" class="selected" data-slide-to="0" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=one" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
+                        <a id="carousel-selector-1" onclick="changeImage(2)" data-slide-to="1" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=two" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
+                        <a id="carousel-selector-2" onclick="changeImage(3)" data-slide-to="2" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=three" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-3" data-slide-to="3" data-target="#myCarousel">
+                        <a id="carousel-selector-3" onclick="changeImage(4)" data-slide-to="3" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=four" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-4" data-slide-to="4" data-target="#myCarousel">
+                        <a id="carousel-selector-4" onclick="changeImage(5)" data-slide-to="4" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=five" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-5" data-slide-to="5" data-target="#myCarousel">
+                        <a id="carousel-selector-5" onclick="changeImage(6)" data-slide-to="5" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=six" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-6" data-slide-to="6" data-target="#myCarousel">
+                        <a id="carousel-selector-6" onclick="changeImage(7)" data-slide-to="6" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=seven" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-7" data-slide-to="7" data-target="#myCarousel">
+                        <a id="carousel-selector-7" onclick="changeImage(8)" data-slide-to="7" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=eight" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-6" data-slide-to="8" data-target="#myCarousel">
+                        <a id="carousel-selector-6" onclick="changeImage(9)" data-slide-to="8" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=seven" class="img-fluid">
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a id="carousel-selector-7" data-slide-to="9" data-target="#myCarousel">
+                        <a id="carousel-selector-7" onclick="changeImage(10)" data-slide-to="9" data-target="#myCarousel">
                             <img src="http://via.placeholder.com/80x60&amp;text=eight" class="img-fluid">
                         </a>
                     </li>
@@ -141,5 +143,36 @@
     </div>
     <!--/main slider carousel-->
 </div>
+
+<script>
+    var currentImage = $(this).attr('data-slide-number');
+    currentImage = 1;
+    var imagesTotal = 10;
+
+    $('a.carousel-control-prev').click(function() {
+        currentImage--;
+        if(currentImage == 0) {
+            //load previous images.
+            alert('I am at start');
+        }
+        console.log("prev", currentImage);
+     //   return false;
+    });
+
+    $('a.carousel-control-next').click(function() {
+        currentImage++
+        if(currentImage == imagesTotal + 1) {
+            //load next images
+            alert("I am at last");
+        }
+        console.log("next", currentImage);
+        //return false;
+    });
+
+    function changeImage(imageNumber) {
+        currentImage = imageNumber;
+        console.log("currentimage", currentImage);
+    }
+</script>
 </body>
 </html>

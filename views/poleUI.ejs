@@ -1,82 +1,250 @@
-
 <html lang="en">
-    <head>
+  <head>
     <title>POLE_WEB GIS NV</title>
     <!--Libraries for -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
- 
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
     <script type="text/css">
-        .num{
-            background:#000;
-            color:#fff;
-            padding:10px;
-            width:50px;
-            text-align:center;
-        }
+      .num{
+          background:#000;
+          color:#fff;
+          padding:10px;
+          width:50px;
+          text-align:center;
+      }
     </script>
     <style type="text/css">
-        #myCarousel .list-inline {
-            white-space:nowrap;
-            overflow-x:auto;
-        }
-        
-        #myCarousel .carousel-indicators {
-            position: static;
-            left: initial;
-            width: initial;
-            margin-left: initial;
-        }
-        
-        #myCarousel .carousel-indicators > li {
-            width: initial;
-            height: initial;
-            text-indent: initial;
-        }
-        
-        #myCarousel .carousel-indicators > li.active img {
-            opacity: 0.7;
-        }
-      
-        
-     
+      /* Style for bootstrap slider. */  
+      #myCarousel .list-inline {
+        white-space: nowrap;
+        overflow-x: auto;
+      }
 
+      #myCarousel .carousel-indicators {
+        position: static;
+        left: initial;
+        width: initial;
+        margin-left: initial;
+      }
+
+      #myCarousel .carousel-indicators > li {
+        width: initial;
+        height: initial;
+        text-indent: initial;
+      }
+
+      #myCarousel .carousel-indicators > li.active img {
+        opacity: 0.7;
+      }
+
+      /* Style for bullet navigator. */
+      .sbn {
+        width: 47.5%;
+        height: 280px;
+        padding-top: 80px;
+        border-top: 1px solid #fff;
+        box-sizing: border-box;
+      }
+
+      .sbn:nth-of-type(odd) {
+        margin-left: 25%;
+      }
+
+      .sbn:nth-of-type(even) {
+        margin-left: 25%;
+      }
+
+      .sbn:nth-of-type(1),
+      .sbn:nth-of-type(2) {
+        height: 200px;
+        padding-top: 0;
+        border-top: none;
+      }
+
+      .sbn p {
+        font-size: 20px;
+        margin-bottom: 40px;
+      }
+
+      @media screen and (max-width: 800px) {
+        .sbn-list {
+          margin: 80px 40px 0;
+        }
+
+        .sbn {
+          width: auto;
+          float: none !important;
+        }
+
+        .sbn:nth-of-type(2) {
+          height: 280px;
+          padding-top: 80px;
+          border-top: 1px solid #fff;
+        }
+
+        ul li {
+          margin: 0 0.7em !important;
+        }
+
+        .sbn13 ul li {
+          width: 26px;
+          margin: 0 0.6em !important;
+        }
+      }
+
+      ul {
+        list-style: none;
+        text-align: center;
+      }
+
+      ul li {
+        display: inline-block;
+        margin: 0 1em;
+      }
+
+      ul li a {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        font-size: 0;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        outline: none;
+        box-sizing: border-box;
+        transition: 0.2s ease-in-out;
+      }
+
+      .sbn02 ul li a {
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 50%;
+      }
+
+      .sbn02 ul li a:hover {
+        background-color: rgba(124, 112, 112, 0.5);
+      }
+
+      .sbn02 ul li a.is-active {
+        background-color: rgb(0, 0, 0);
+      }
+
+      body {
+        color: #fff;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 60px 0 30px;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+
+      h1 + p a {
+        color: #fff;
+      }
+
+      h1 + p a:hover {
+        text-decoration: none;
+      }
+
+      .sbn-list {
+        margin: 80px 80px 0;
+        overflow: hidden;
+      }
     </style>
-</head>
-<body>
-    <div id="myCarousel" class="carousel" data-ride="carousel slide" data-interval="false" width="500px">
-    <div class="carousel-inner">
-        <% myData.poleImages.forEach(function(image, index) { %>
-            <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>">
-               <img  intrinsicsize="350 x 600" class="rounded mx-auto d-block" style="float: center;" height="100%"  src="/<%= image %>" alt="First slide"  >
-            </div>
-        <% })%>
+  </head>
 
+  <body>
+    <div
+      id="myCarousel"
+      class="carousel"
+      data-ride="carousel slide"
+      data-interval="false"
+      width="500px"
+    >
+      <div class="carousel-inner">
+        <% myData.poleImages.forEach(function(image, index) { %>
+        <div
+          class="carousel-item <% if(index == 0) { %> active <% } %> data-slide-number=<%= index %>"
+        >
+          <img
+            intrinsicsize="350 x 600"
+            class="rounded mx-auto d-block"
+            style="float: center"
+            height="100%"
+            src="/<%= image %>"
+            alt="First slide"
+          />
+        </div>
+
+        <% })%>
+        <!--Bullet Navigator-->
+        <div class="sbn-list">
+          <div class="sbn sbn02">
             <!--Navigator-->
-            <ul class="carousel-indicators list-inline mx-auto border px-2"></ul>
-            <% myData.poleImages.forEach(function(image, index) { %>
-            
-                <li class="list-inline-item ">
-                    
-                    <a id="carousel-selector-<%=  index %>" class="selected" data-slide-to="<%=  index %>" data-target="#myCarousel">
-                        <img src="/<%= image %>" width="100" height="100" >
-                    </a>
-                </li>
-              
-             <% })%>
-            </ul>  
+            <ul>
+              <% myData.poleImages.forEach(function(image, index) { %>
+              <li>
+                <a
+                  id="carousel-selector-<%=  index %>"
+                  class="<% if(index == 0) {%>is-active<%} %>"
+                  data-slide-to="<%=  index %>"
+                  data-target="#myCarousel"
+                >
+                  <!-- <img src="/<%= image %>" width="100" height="100" > -->
+                  hello
+                </a>
+              </li>
+
+              <% })%>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#myCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#myCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-        <!-- Carasoul Next & Prev buttons -->
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only" >Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</body>
+
+    <script>
+      $("ul li a").on("click", function () {
+        $(this).closest("ul").find("a").removeClass("is-active");
+        $(this).addClass("is-active");
+        //   return false;
+      });
+    </script>
+  </body>
 </html>

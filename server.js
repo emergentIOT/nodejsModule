@@ -10,6 +10,8 @@ const router = express.Router();
 const url = require('url');
 
 app.use('/AIMS_DATA2', express.static(path.resolve(__dirname, 'AIMS_DATA2')));
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
+app.use('/views', express.static(path.resolve(__dirname, 'views')))
 app.set('view engine', 'ejs');
 app.listen(port, () => {console.log(`Server up at PORT: ${port}`);})
 

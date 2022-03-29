@@ -17,7 +17,8 @@ const path = require("path");
 async function getDirFiles(folderName, requestedFileName) {
     //Array to get list of images in requested directory.
     let listOfImages = [];
-    const slideRange = 6;
+    //Range for image navigator in FOTI request.
+    const slideRange = 10;
     let l_startIndex = 0;
     //Read directory. 
     const dirs = await fs.readdir(folderName, { withFileTypes: true });

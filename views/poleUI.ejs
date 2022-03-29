@@ -34,10 +34,11 @@
               </ul>
             </div>
           </div>
+          <!-- Carasoul Next & Prev buttons -->
+    <%- include('partials/navigationControls.ejs') %>
     </div>
 
-    <!-- Carasoul Next & Prev buttons -->
-    <%- include('partials/navigationControls.ejs') %>
+    
 
   </div>
 
@@ -48,8 +49,8 @@
       $(this).addClass("is-active");
     });
 
-    $('a.carousel-control-next').click(function () {
-      $(this).find("a").removeClass("is-active");
+    $("a.carousel-control-next").click(function () {
+      $(this).closest("div.sbn sbn02 ul").find("a").removeClass("is-active");
       $(this).addClass("is-active");
     });
 

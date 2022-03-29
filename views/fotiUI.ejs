@@ -19,7 +19,8 @@
             <% myData.listOfImages.forEach(function(image, index) { %>
                 <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>">
                     <p>
-                        <%= image %> , <%= (index) + myData.startIndex %>
+                        
+                        <%= image.split("/").pop() %> , <%= (index) + myData.startIndex %>
                     </p>
                     <img class="d-block w-100" src="/<%= image %>" alt="First slide">
                 </div>
@@ -54,23 +55,15 @@
     <script>
         //Slider controls
         var currentImage = $(this).attr('data-slide-to');
-        currentImage = $('div.carousel-item').index() + 1;
+        currentImage =  1;
         var imagesTotal = $('.carousel-item').length;
 
         //Previous image control
         $('a.carousel-control-prev').click(function () {
             currentImage -= $('div.carousel-item').index() + 1;
-            if (currentImage == 1) {
-                var currentSlide = document.getElementById('index_1');
-                anAttr = 'prev-slides';
-
-                if (currentSlide.getAttribute(anAttr) == 'true') {
-                    var fName = currentSlide.getAttribute('fname');
-                    var currentURL = decodeURIComponent((window.location.href + '').replace(/\+/g, '%20'));
-                    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;
-                    window.location.assign(newURL);
-                }
-            }
+            if(currentImage == 1 || currentImage == 0 || currentImage < 0) {
+                loadPreviousImages();
+            } 
 
             console.log("prev", currentImage);
         });
@@ -79,7 +72,42 @@
         $('a.carousel-control-next').click(function () {
             currentImage += $('div.carousel-item').index() + 1;
             if (currentImage == imagesTotal) {
-                var currentSlide = document.getElementById('index_' + currentImage);
+                loadNextImages();
+            }
+
+            console.log("next", currentImage)
+        });
+
+        //Images selected randomly
+        function changeImage(imageNumber) {            
+            var image = parseInt(imageNumber) + 1;
+            currentImage = image;
+            
+            if (currentImage == 1) {
+                loadPreviousImages();
+            }
+
+            if (currentImage == imagesTotal) {
+                loadNextImages();
+            }
+            
+            console.log("selected", currentImage);
+        }
+
+        function loadPreviousImages() {
+            var currentSlide = document.getElementById('index_1');
+                anAttr = 'prev-slides';
+
+                if (currentSlide.getAttribute(anAttr) == 'true') {
+                    var fName = currentSlide.getAttribute('fname');
+                    var currentURL = decodeURIComponent((window.location.href + '').replace(/\+/g, '%20'));
+                    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;
+                    window.location.assign(newURL);
+                }
+        }
+
+        function loadNextImages() {
+            var currentSlide = document.getElementById('index_' + currentImage);
                 console.log("currentslide", currentSlide);
                 anAttr = 'more-slides';
 
@@ -89,17 +117,6 @@
                     var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;
                     window.location.assign(newURL);
                 }
-            }
 
-            console.log("next", currentImage)
-        });
-
-        //Images selected randomly
-        function changeImage(imageNumber) {
-            
-            var image = parseInt(imageNumber) + 1;
-            currentImage = image;
-            
-            console.log("selected", currentImage);
         }
     </script>

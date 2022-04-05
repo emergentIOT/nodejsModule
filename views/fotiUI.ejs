@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>FOTI_WEB GIS NV</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!--Libraries for -->
     <%- include('partials/header.ejs') %>
     <link rel="stylesheet" type="text/css" href="../public/css/fotiStyle.css">
@@ -17,23 +20,23 @@
         <div class="carousel-inner">
 
             <% myData.listOfImages.forEach(function(image, index) { %>
-                <div class="carousel-item  <% if(index == 0) { %> active <% } %>  data-slide-number=<%= index %>">
+                <div class="carousel-item  <% if(index == 10) { %> active <% } %>  data-slide-number=<%= index %>">
                     <p>
                         
                         <%= image.split("/").pop() %> , <%= (index) + myData.startIndex %>
                     </p>
-                    <img class="d-block w-100" src="/<%= image %>" alt="First slide">
+                    <img class="d-block w-100" src="/<%= image %>" alt="First slide" />
                 </div>
             <% }) %>
                     <!-- Image Navigator.-->
-                    <ul class="carousel-indicators list-inline mx-auto border px-2">
+                    <ul class="carousel-indicators list-inline border px-2" style="margin-top: -59px; margin-right: 0%; margin-left: 0%;">
                         <% myData.listOfImages.forEach(function(imageName, index) { %>
                             <li class="list-inline-item ">
 
                                 <a class="mine" id="carousel-selector-<%=  index %>"
                                     onclick="changeImage(`<%= index %>`)" class="selected" data-slide-to="<%=  index %>"
                                     data-target="#myCarousel">
-                                    <img src="/<%= imageName %>" class="img-fluid">
+                                    <img src="/<%= imageName %>" class="img-fluid" />
                                 </a>
                             </li>
                             <% }) %>
@@ -52,71 +55,9 @@
 
     </div>
 
-    <script>
-        //Slider controls
-        var currentImage = $(this).attr('data-slide-to');
-        currentImage =  1;
-        var imagesTotal = $('.carousel-item').length;
-
-        //Previous image control
-        $('a.carousel-control-prev').click(function () {
-            currentImage -= $('div.carousel-item').index() + 1;
-            if(currentImage == 1 || currentImage == 0 || currentImage < 0) {
-                loadPreviousImages();
-            } 
-
-            console.log("prev", currentImage);
-        });
-
-        //Next image control
-        $('a.carousel-control-next').click(function () {
-            currentImage += $('div.carousel-item').index() + 1;
-            if (currentImage == imagesTotal) {
-                loadNextImages();
-            }
-
-            console.log("next", currentImage)
-        });
-
-        //Images selected randomly
-        function changeImage(imageNumber) {            
-            var image = parseInt(imageNumber) + 1;
-            currentImage = image;
-            
-            if (currentImage == 1) {
-                loadPreviousImages();
-            }
-
-            if (currentImage == imagesTotal) {
-                loadNextImages();
-            }
-            
-            console.log("selected", currentImage);
-        }
-
-        function loadPreviousImages() {
-            var currentSlide = document.getElementById('index_1');
-                anAttr = 'prev-slides';
-
-                if (currentSlide.getAttribute(anAttr) == 'true') {
-                    var fName = currentSlide.getAttribute('fname');
-                    var currentURL = decodeURIComponent((window.location.href + '').replace(/\+/g, '%20'));
-                    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;
-                    window.location.assign(newURL);
-                }
-        }
-
-        function loadNextImages() {
-            var currentSlide = document.getElementById('index_' + currentImage);
-                console.log("currentslide", currentSlide);
-                anAttr = 'more-slides';
-
-                if (currentSlide.getAttribute(anAttr) == 'true') {
-                    var fName = currentSlide.getAttribute('fname');
-                    var currentURL = decodeURIComponent((window.location.href + '').replace(/\+/g, '%20'));
-                    var newURL = currentURL.slice(0, currentURL.lastIndexOf('\\') + 1) + fName;
-                    window.location.assign(newURL);
-                }
-
-        }
+    <!--JS to control navigation buttons-->
+    <script src="../public/js/controlImages.js">    
     </script>
+    </body>
+</html>
+

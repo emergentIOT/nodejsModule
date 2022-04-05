@@ -1,14 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-
-// Add postman test
-//6. Handle exceptions : working
-//7. Adding logger
-//8. Cors
-//9. nginx 
-//10. Security: OpenAuth
-
 /**
  * 
  * @param {* dir path for requested FOTI link} folderName.
@@ -22,7 +14,7 @@ async function getDirFiles(folderName, requestedFileName) {
     let l_startIndex = 0;
     //Read directory. 
     const dirs = await fs.readdir(folderName, { withFileTypes: true });
-    console.log(`Total number of images: ${dirs.length}`);
+    console.log("Total number of images:" , dirs.length);
     for (const item of dirs) {
         if(item.isDirectory()) {
            listOfImages = listOfImages.concat(item.name);
@@ -89,7 +81,7 @@ return {
     let formatUrl = [];
      
     if(!queryObject) {
-        console.log(`No Query param available : ${queryObject}`)
+        console.log("No Query param available :", queryObject);
     }
     const splitUrl = queryObject.img.split("\\");
     for (i = 3 ; i < splitUrl.length - 1 ; i++ ) {
@@ -115,7 +107,7 @@ async function formatPoleQueryParam(queryObject) {
     var requestedUrl = [];
 
     if(!queryObject) {
-        console.log(`No Query param available : ${queryObject}`)
+        console.log("No Query param available :", queryObject);
     }
 
     for(i=0;i<queryObject.PTIV;i++)

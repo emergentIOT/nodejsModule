@@ -3,7 +3,7 @@ Converting FOTI WAR file project to NODE JS module
 
 FOTI Project files: \\asmet360\d$\Smallworld_430\gss430-jboss-6.1.0.Final\server\default\deploy\FOTI.war
 
-1. Copy NODE JS dir to C:\newModule\nodejsModule
+1. REPO: https://dev.azure.com/tfnswsydtrainsGIS/Infra-LIMS%20GIS/_git/foti
 
 
 2. SETUP as a Windows service: 
@@ -11,7 +11,7 @@ FOTI Project files: \\asmet360\d$\Smallworld_430\gss430-jboss-6.1.0.Final\server
     - https://nssm.cc/usage
     - start-server.bat file is used to start the application as a service
 
-3. IMAGES DIR:
+3. IMAGES DIR is needed to run the application, we need to create mklink in dir, follow steps given below:
 
 Create mklink:
 CMD as ADMIN: mklink /d <link> <target>
@@ -22,6 +22,7 @@ CMD as ADMIN: mklink /d <link> <target>
 
 AIMS_DATA2 is a makelink folder with target link.
 
+4. Project deploy at : 
 
 FOTI TESTING LINKS:
 
